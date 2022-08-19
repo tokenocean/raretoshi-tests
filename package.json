@@ -1,0 +1,16 @@
+{
+  "name": "raretoshi-tests",
+  "version": "0.0.1",
+  "description": "Integration test for Raretoshi",
+  "scripts": {
+    "test": "tape test.js | tap-arc",
+    "test-headless": "tape test.js --headless | tap-arc",
+    "test-act": "act --workflows ./action-test.yml --job runTestLocal"
+  },
+  "dependencies": {
+    "puppeteer": "13.1.2",
+    "tap-arc": "0.1.2",
+    "tape": "5.5.3",
+    "undercoin": "0.0.5-b"
+  }
+}
