@@ -4,8 +4,7 @@
   "description": "Integration test for Raretoshi",
   "scripts": {
     "test": "tape test.js | tap-arc",
-    "test-headless": "tape test.js --headless | tap-arc",
-    "test-act": "act --workflows ./action-test.yml --job runTestLocal"
+    "test-headless": "tape test.js --headless | tap-arc"
   },
   "dependencies": {
     "puppeteer": "13.1.2",

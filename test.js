@@ -1,6 +1,12 @@
 console.log(`###### Raretoshi Integration Test ######
 -------------------------------------`);
 
+// PREFERENCES
+// Parse terminal params:
+const argv = require("minimist")(process.argv.slice(2));
+const headless = argv.headless ? true : false;
+
+// load configu
 let config;
 try {
   config = require("./config");
@@ -22,7 +28,7 @@ const delay = async (ms) =>
 // Function to setup/launch Puppeteer and open Coinos homepage:
 const openCoinosHome = async () => {
   const opts = {
-    headless: false,
+    headless: headless,
     timeout: 60000,
     args: [
       "--disabled-setupid-sandbox",
@@ -34,7 +40,11 @@ const openCoinosHome = async () => {
       "--no-zygote",
     ],
   };
-  opts.defaultViewport = null;
+  if (headless) {
+    opts.args.push("--window-size=1600,900");
+  } else {
+    opts.defaultViewport = null;
+  }
 
   return new Promise(async (resolve) => {
     const browser = await puppeteer.launch(opts);
